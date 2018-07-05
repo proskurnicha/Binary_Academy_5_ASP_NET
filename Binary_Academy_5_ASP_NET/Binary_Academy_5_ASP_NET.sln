@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binary_Academy_5_ASP_NET", "Binary_Academy_5_ASP_NET\Binary_Academy_5_ASP_NET.csproj", "{B44AC8C3-400E-4636-AF64-47728502F6D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B44AC8C3-400E-4636-AF64-47728502F6D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B44AC8C3-400E-4636-AF64-47728502F6D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B44AC8C3-400E-4636-AF64-47728502F6D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B44AC8C3-400E-4636-AF64-47728502F6D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {127F2AB2-0B80-4485-AA78-3270A28D8378}
+	EndGlobalSection
+EndGlobal
