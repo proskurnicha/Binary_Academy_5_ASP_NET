@@ -14,14 +14,18 @@ namespace Binary_Academy_5_ASP_NET
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            usersService = new UsersService();
         }
 
         public IConfiguration Configuration { get; }
+        public UsersService usersService;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddScoped<UsersService>();
+            services.AddScoped<ParseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

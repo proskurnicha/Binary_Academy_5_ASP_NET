@@ -1,0 +1,56 @@
+﻿@model List<Binary_Academy_5_ASP_NET.Models.Todo>
+
+@{
+    ViewData["Title"] = "GetDoneTodosByUserId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Get done todos by user id</h2>
+
+
+<form asp-controller="ManipulateData" asp-action="GetCommentsByUserId" method="post">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Id</span>
+                <input type="text" name="id" class="form-control" placeholder="Id" aria-label="Id" aria-describedby="basic-addon1">
+            </div>
+            <br />
+            <input class="btn btn-success" type="submit" value="Get comments">
+        </div>
+    </div>
+</form>
+<br />
+
+@if (Model != null)
+{
+    @if (Model.Count == 0)
+    {
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="alert alert-success" role="alert">
+                    This user #@ViewData["id"] has no done todoss yet
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="list-group">
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <ul class="list-group">
+                        @foreach (var todo in Model)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @todo.name
+                                <small>@todo.createdAt</small>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+}
