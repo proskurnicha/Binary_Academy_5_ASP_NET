@@ -248,17 +248,19 @@ th {
   .label {
     border: 1px solid #000;
   }
-  .table {
-    border-collapse: collapse !important;
-  }
+    .table {
+        border-collapse: collapse !important;
+        width: 80%;
+    }
   .table td,
   .table th {
     background-color: #fff !important;
   }
-  .table-bordered th,
-  .table-bordered td {
-    border: 1px solid #ddd !important;
-  }
+    .table-bordered th,
+    .table-bordered td {
+        border: 2px solid #ddd;
+       
+    }
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -2304,6 +2306,7 @@ th {
 }
 .table-bordered {
   border: 1px solid #ddd;
+  width: 80%;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,

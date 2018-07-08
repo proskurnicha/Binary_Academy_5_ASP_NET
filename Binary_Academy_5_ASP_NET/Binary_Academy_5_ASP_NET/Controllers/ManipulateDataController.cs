@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Binary_Academy_5_ASP_NET.Models;
+using Binary_Academy_5_ASP_NET.Models.ViewModel;
 namespace Binary_Academy_5_ASP_NET.Controllers
 {
     [Produces("application/json")]
@@ -86,6 +87,23 @@ namespace Binary_Academy_5_ASP_NET.Controllers
 
         #endregion
 
+        #region GetInfoAboutUserById
+        // GET: api/ManipulateData/GetInfoAboutUserById
+        [HttpGet("GetInfoAboutUserById")]
+        public IActionResult GetInfoAboutUserById()
+        {
+            return View();
+        }
+
+        //POST: api/ManipulateData/GetInfoAboutUserById
+        [HttpPost("GetInfoAboutUserById")]
+        public IActionResult GetInfoAboutUserById(int id)
+        {
+            var result = service.GetInfoAboutUserById(id);
+            return View("GetInfoAboutUserById", result);
+        }
+        #endregion
+
         #region GetInfoAboutPostById
         // GET: api/ManipulateData/GetInfoAboutPostById
         [HttpGet("GetInfoAboutPostById")]
@@ -98,10 +116,9 @@ namespace Binary_Academy_5_ASP_NET.Controllers
         [HttpPost("GetInfoAboutPostById")]
         public IActionResult GetInfoAboutPostById(int id)
         {
-            int countComments = service.GetCountCommentsByUserId(id);
-            ViewData["countComments"] = countComments;
-            ViewData["id"] = id;
-            return View("GetCountComments");
+            var result = service.GetInfoAboutPostById(id);
+            InfoAboutPostById infoAboutPost = new InfoAboutPostById() { Post = result.Post, CountComments = result.countComment, CommentWithMaxLenght = result.commentWithMaxLenght, CommentWithMaxCountLikes = result.commentWithMaxCountLikes };
+            return View("GetInfoAboutPostById", infoAboutPost);
         }
         #endregion
 

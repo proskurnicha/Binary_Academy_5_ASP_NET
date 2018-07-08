@@ -1,0 +1,59 @@
+﻿@model Binary_Academy_5_ASP_NET.Models.User
+
+@{
+    ViewData["Title"] = "Get";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            <p><img class="avatar_main" src=@Model.avatar alt="Card image cap"></p>
+        </div>
+        <div class="col-md-4">
+            <p>@Model.name</p>
+        </div>
+        <div class="col-md-4">
+            <p>@Model.createdAt</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p><b>TODOS</b></p>
+            @await Html.PartialAsync("ListTodos", Model.todos)
+        </div>
+        <div class="col-md-6">
+            <p><b>POSTS</b></p>
+            @if (@Model.posts.Count == 0)
+            {
+                <p>No posts</p>
+            }
+            else
+            {
+                @foreach (var post in @Model.posts)
+                {
+                    <p>@post.title</p>
+                    <p>@post.body</p>
+                    <p>@post.createdAt</p>
+                    <p>@post.likes</p>
+                    @if (post.comments.Count == 0)
+                    {
+                        <p>No comments</p>
+                    }
+                    else
+                    {
+                        @foreach (var comment in @post.comments)
+                        {
+                            <p>CommentBody     @comment.body</p>
+                            <p>CommentCreatedAt     @comment.createdAt</p>
+                            <p>CommentLikes     @comment.likes</p>
+                        }
+                    }
+
+                    <br />
+                }
+            }
+        </div>
+    </div>
+    <a asp-action="Index">Back to List</a>
+</div>

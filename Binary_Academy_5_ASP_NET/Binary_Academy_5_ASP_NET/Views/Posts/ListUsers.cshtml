@@ -1,0 +1,28 @@
+﻿@model List<Binary_Academy_5_ASP_NET.Models.User>;
+
+@if (@Model.Count == 0)
+{
+    <p>No users</p>
+}
+else
+{
+    <table class="table-bordered">
+        <thead>
+            <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+                <th>Created at</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td><p><img class="avatar" src=@user.avatar alt="Card image cap"></p></td>
+                    <td>@user.name</td>
+                    <td>@user.createdAt</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

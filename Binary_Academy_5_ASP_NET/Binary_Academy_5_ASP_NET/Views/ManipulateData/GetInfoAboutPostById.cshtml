@@ -1,0 +1,41 @@
+﻿@model Binary_Academy_5_ASP_NET.Models.ViewModel.InfoAboutPostById;
+@{
+    ViewData["Title"] = "GetInfoAboutPostById";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Get information about post by id</h2>
+
+<form asp-controller="ManipulateData" asp-action="GetInfoAboutPostById" method="post">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Id</span>
+                <input type="text" name="id" class="form-control" placeholder="Id" aria-label="Id" aria-describedby="basic-addon1">
+            </div>
+            <br />
+            <input class="btn btn-success" type="submit" value="Get info">
+        </div>
+    </div>
+</form>
+
+@{
+    List<Post> posts = new List<Post>();
+    if (Model != null) { posts.Add(Model.Post); }
+}
+
+@if (Model != null)
+{
+    <br/>
+    <p><b>Post:</b></p>
+    @await Html.PartialAsync("../Posts/ListPosts", posts)
+    <br />
+    <p><b>Comment with max lenght:</b></p>
+    @await Html.PartialAsync("../Posts/ListComments", Model.CommentWithMaxLenght)
+    <br />
+    <p><b>Comment with max count likes:</b></p>
+    @await Html.PartialAsync("../Posts/ListComments", Model.CommentWithMaxCountLikes)
+    <br />
+    <p><b>Count comments where count likes = 0 or body.Lenght < 80: @Model.CountComments</b></p>
+
+}

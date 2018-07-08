@@ -1,0 +1,42 @@
+﻿@model List<Binary_Academy_5_ASP_NET.Models.Post>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @foreach (var post in Model)
+        {
+        <div class="post_area">
+            <div class="row avatar_area">
+                <div class="col-md-1 avatar_col">
+                    <p class="avatar_p"><span><img class="avatar" src=@post.user.avatar alt="Card image cap"></span></p>
+                </div>
+                <div class="col-md-11">
+                    <p class="user_name_post">@Html.ActionLink(@post.user.name, "Get", "Posts", new { id = @post.user.id }, null)</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="post_title">@post.title</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="post_data">@post.body</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <p class="post_data">@post.createdAt</p>
+                </div>
+                <div class="col-md-2">
+                    <p class="likes_post post_data">Likes: @post.likes</p>
+                </div>
+            </div>
+        </div>            
+        }
+    </div>
+</div>

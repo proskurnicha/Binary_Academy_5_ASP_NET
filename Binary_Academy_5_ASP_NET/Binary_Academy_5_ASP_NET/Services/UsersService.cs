@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Binary_Academy_5_ASP_NET.Models;
-
+using Binary_Academy_5_ASP_NET.Models.ViewModel;
 
 namespace Binary_Academy_5_ASP_NET
 {
@@ -49,51 +49,47 @@ namespace Binary_Academy_5_ASP_NET
 
         public List<User> GetOrderedListOfUsers()
         {
-            return users.OrderBy(user => user.name).Select(user => new User() { id = user.id, name = user.name, todos = user.todos.OrderByDescending(todo => todo.name.Length).ToList() }).ToList();
+            return users.OrderBy(user => user.name).Select(user => new User() { id = user.id, name = user.name, avatar = user.avatar, createdAt = user.createdAt,
+                posts = user.posts, todos = user.todos.OrderByDescending(todo => todo.name.Length).ToList() }).ToList();
         }
 
-        public void GetInfoAboutUserById(int id)
+        public InfoAboutUserById GetInfoAboutUserById(int id)
         {
-            //FirstModel firstModel = new FirstModel();
-            //firstModel.userById = users.Find(user => user.id == id);
+            var result = users.Where(user => user.id == id).Select(
+            x => new
+            {
+                User = x,
+                lastPost = x.posts.Where(post => post.createdAt == (x.posts.Min(y => y.createdAt))).ToList(),
+                countCommentsLastPost = x.posts.Where(post => post.createdAt == (x.posts.Min(y => y.createdAt))).First().comments.Count,
+                countTaskNotDone = x.todos.Where(todo => todo.isComplete == false).Count(),
+                mostPopularPostByLenght = x.posts.Where(
+                    post => post.comments.Where(comment => comment.body.Length > 80).Count()
+                    == x.posts.Max(y => x.posts.SelectMany(post2 => post2.comments.Where(comment2 => comment2.body.Length > 80)).Count())).ToList(),
 
-            //if (firstModel.userById != null)
-            //{
-            //    firstModel.userById.posts.ForEach(post => { if (firstModel.lastPost.createdAt < post.createdAt) { firstModel.lastPost = post; } });
+                postMaxCountLikes = x.posts.Where(post => post.likes == x.posts.Max(y => y.likes)).ToList()
+            }).First();
 
-            //    if (firstModel.lastPost.comments != null)
-            //        firstModel.countCommentsLastPost = firstModel.lastPost.comments.Count;
+            InfoAboutUserById infoAboutUser = new InfoAboutUserById()
+            {
+                UserById = result.User,
+                LastPost = result.lastPost,
+                CountCommentsLastPost = result.countCommentsLastPost,
+                CountTaskNotDone = result.countTaskNotDone,
+                MostPopularPostByLenght = result.mostPopularPostByLenght,
+                MostPopularPostByLikes = result.postMaxCountLikes
+            };
 
-            //    firstModel.countTaskNotDone = firstModel.userById.todos.Where(todo => !todo.isComplete).Count();
-
-
-            //    int countComment = 0;
-
-            //    firstModel.userById.posts.ForEach(post =>
-            //    {
-            //        int currentCountComment = post.comments.Where(comment => comment.body.Length > 80).Count();
-            //        if (countComment < currentCountComment)
-            //        {
-            //            firstModel.mostPopularPostByLenght = post;
-            //            countComment = currentCountComment;
-            //        }
-            //    });
-
-            //    firstModel.userById.posts.ForEach(post => { if (firstModel.mostPopularPostByLikes.likes < post.likes) { firstModel.mostPopularPostByLikes = post; } });
-
-            //}
-
-            //return firstModel;
+            return infoAboutUser;
         }
 
-        public (Post Post, Comment commentWithMaxLenght, Comment commentWithMaxCountLikes, int countComment) GetInfoAboutPostById(int id)
+        public (Post Post, List<Comment> commentWithMaxLenght, List<Comment> commentWithMaxCountLikes, int countComment) GetInfoAboutPostById(int id)
         {
             var result = users.SelectMany(user => user.posts).Where(post => post.id == id).Select(
             x => new
             {
                 Post = x,
-                commentWithMaxLenght = x.comments.OrderBy(comment => comment.body.Length).First(),
-                commentWithMaxCountLikes = x.comments.OrderBy(comment => comment.likes).First(),
+                commentWithMaxLenght = x.comments.Where(comment => comment.body.Length == (x.comments.Max(y => y.body.Length))).ToList(),
+                commentWithMaxCountLikes = x.comments.Where(comment => comment.likes == (x.comments.Max(y => y.likes))).ToList(),
                 countComment = x.comments.Where(comment => comment.likes == 0 || comment.body.Length < 80).Count()
             }).FirstOrDefault();
 
@@ -101,6 +97,22 @@ namespace Binary_Academy_5_ASP_NET
                 commentWithMaxLenght: result.commentWithMaxLenght,
                 commentWithMaxCountLikes: result.commentWithMaxCountLikes,
                 countComment: result.countComment);
+        }
+
+        public List<Post> GetPosts()
+        {
+            return users.SelectMany(user => user.posts.OrderByDescending(post => post.createdAt)).Select(post =>
+               new Post()
+               {
+                   body = post.body,
+                   comments = post.comments,
+                   id = post.id,
+                   createdAt = post.createdAt,
+                   user = users.FirstOrDefault(user => user.id == post.userId),
+                   likes = post.likes,
+                   title = post.title
+               }).ToList();
+
         }
     }
 }
