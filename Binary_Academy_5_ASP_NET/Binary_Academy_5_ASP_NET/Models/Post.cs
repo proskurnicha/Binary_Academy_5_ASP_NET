@@ -8,17 +8,17 @@ namespace Binary_Academy_5_ASP_NET.Models
 {
     public class Post
     {
-        public int id;
-        public DateTime createdAt;
-        public string title;
-        public string body;
-        public int userId;
-        public int likes;
-        public List<Comment> comments;
+        public int id { get; set; }
+        public DateTime createdAt { get; set; }
+        public string title { get; set; }
+        public string body { get; set; }
+        public int userId { get; set; }
+        public int likes { get; set; }
+        public List<Comment> comments { get; set; }
 
-        public override string ToString()
+        public Post()
         {
-            return $"Id: {id}   createdAt: {createdAt}    likes: {likes}";
+            comments = new List<Comment>();
         }
     }
 }

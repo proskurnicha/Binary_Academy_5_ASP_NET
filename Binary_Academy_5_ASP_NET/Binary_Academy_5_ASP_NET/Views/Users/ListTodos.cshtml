@@ -1,0 +1,27 @@
+﻿@model Binary_Academy_5_ASP_NET.Models.User
+@if (@Model.todos.Count == 0)
+{
+    <p>No todos</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Created at</th>
+                <th>Is complite</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var todo in @Model.todos)
+            {
+                <tr>
+                    <td>@todo.name</td>
+                    <td>@todo.createdAt</td>
+                    <td>@todo.isComplete</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -18,6 +18,7 @@ namespace Binary_Academy_5_ASP_NET.Controllers
             service = new UsersService();
         }
 
+        #region GetCountComments
         // GET: api/ManipulateData/GetCountComments
         [HttpGet("GetCountComments")]
         public IActionResult GetCountComments()
@@ -35,6 +36,9 @@ namespace Binary_Academy_5_ASP_NET.Controllers
             return View("GetCountComments");
         }
 
+        #endregion
+
+        #region GetCommentsByUserId
 
         // GET: api/ManipulateData/GetCommentsByUserId
         [HttpGet("GetCommentsByUserId")]
@@ -43,21 +47,22 @@ namespace Binary_Academy_5_ASP_NET.Controllers
             return View();
         }
 
-        //POST: api/ManipulateData/GetCountComments
+        //POST: api/ManipulateData/GetCommentsByUserId
         [HttpPost("GetCommentsByUserId")]
         public IActionResult GetCommentsByUserId(int id)
         {
             List<Comment> comments = service.GetCommentsByUserId(id);
             ViewData["id"] = id;
-            return View(comments);
+            return View("GetCommentsByUserId", comments);
         }
+        #endregion
 
-
+        #region GetDoneTodosByUserId
         // GET: api/ManipulateData/GetDoneTodosByUserId
         [HttpGet("GetDoneTodosByUserId")]
         public IActionResult GetDoneTodosByUserId()
         {
-            return View();
+            return View("GetDoneTodosByUserId");
         }
 
         //POST: api/ManipulateData/GetDoneTodosByUserId
@@ -66,27 +71,39 @@ namespace Binary_Academy_5_ASP_NET.Controllers
         {
             List<Todo> todos = service.GetDoneTodosByUserId(id);
             ViewData["id"] = id;
-            return View(todos);
+            return View("GetDoneTodosByUserId", todos);
+        }
+        #endregion
+
+        #region GetOrderedListOfUsers
+        // GET: api/ManipulateData/GetOrderedListOfUsers
+        [HttpGet("GetOrderedListOfUsers")]
+        public IActionResult GetOrderedListOfUsers()
+        {
+            List<User> users = service.GetOrderedListOfUsers();
+            return View("GetOrderedListOfUsers", users);
         }
 
-        
+        #endregion
 
-        // POST: api/ManipulateData
-        //[HttpPost]
-        //public void Post([FromBody]string value)
-        //{
-        //}
+        #region GetInfoAboutPostById
+        // GET: api/ManipulateData/GetInfoAboutPostById
+        [HttpGet("GetInfoAboutPostById")]
+        public IActionResult GetInfoAboutPostById()
+        {
+            return View();
+        }
 
-        //// PUT: api/ManipulateData/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
+        //POST: api/ManipulateData/GetInfoAboutPostById
+        [HttpPost("GetInfoAboutPostById")]
+        public IActionResult GetInfoAboutPostById(int id)
+        {
+            int countComments = service.GetCountCommentsByUserId(id);
+            ViewData["countComments"] = countComments;
+            ViewData["id"] = id;
+            return View("GetCountComments");
+        }
+        #endregion
 
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

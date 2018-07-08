@@ -30,13 +30,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
                     <li><a asp-area="" asp-controller="Users" asp-action="Index">Users</a></li>
-                    <li><a asp-area="" asp-controller="ManipulateData" asp-action="GetCountComments">GetCountComments</a></li>
-                    <li><a asp-area="" asp-controller="ManipulateData" asp-action="GetCommentsByUserId">GetComments</a></li>
-
+                    <li><a asp-area="" asp-controller="ManipulateData" asp-action="GetCountComments">Get count comments</a></li>
+                    <li><a asp-area="" asp-controller="ManipulateData" asp-action="GetCommentsByUserId">Get comments</a></li>
+                    <li><a asp-area="" asp-controller="ManipulateData" asp-action="GetDoneTodosByUserId">Get done todos</a></li>
+                    <li><a asp-area="" asp-controller="ManipulateData" asp-action="GetOrderedListOfUsers">Get ordered list of users</a></li>
+                    
                 </ul>
             </div>
         </div>

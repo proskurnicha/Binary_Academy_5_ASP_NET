@@ -8,24 +8,19 @@ namespace Binary_Academy_5_ASP_NET.Models
 {
     public class User
     {
-        public int id;
-        public DateTime createdAt;
-        public string name;
-        public string avatar;
-        public Address address;
-        public List<Post> posts;
-        public List<Todo> todos;
+        public int id { get; set; }
+        public DateTime createdAt { get; set; }
+        public string name { get; set; }
+        public string avatar { get; set; }
+        public Address address { get; set; }
+        public List<Post> posts { get; set; }
+        public List<Todo> todos { get; set; }
 
-        public override string ToString()
+        public User()
         {
-            return $"Id: {id.ToString()}    name: {name.ToString()}";
-        }
-
-        public string Show()
-        {
-            string s = $"Id: {id.ToString()}    name: {name.ToString()}\n";
-            todos.ForEach(todo => s += todo.Show());
-            return s;
+            posts = new List<Post>();
+            todos = new List<Todo>();
+            address = new Address();
         }
     }
 }

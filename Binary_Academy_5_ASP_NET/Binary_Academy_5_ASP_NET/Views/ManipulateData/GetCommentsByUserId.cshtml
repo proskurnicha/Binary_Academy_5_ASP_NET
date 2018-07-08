@@ -34,6 +34,13 @@
     }
     else
     {
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="alert alert-success" role="alert">
+                    This user #@ViewData["id"] has comments:
+                </div>
+            </div>
+        </div>
         <div class="list-group">
 
             <div class="row">
@@ -41,11 +48,11 @@
                     <ul class="list-group">
                         @foreach (var comment in Model)
                         {
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            @comment.body
-                            <span class="badge badge-primary badge-pill"> @comment.likes</span>
-                            <small>@comment.createdAt</small>
-                        </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @comment.body
+                                <span class="badge badge-primary badge-pill"> @comment.likes</span>
+                                <small>@comment.createdAt</small>
+                            </li>
                         }
                     </ul>
                 </div>

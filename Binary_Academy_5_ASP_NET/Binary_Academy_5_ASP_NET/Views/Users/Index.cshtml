@@ -8,27 +8,5 @@
 <h2>Index</h2>
 @foreach (var item in Model)
 {
-<p>
-    @Html.ActionLink(@item.name, "Get", "Users", new { id = item.id }, null)</p>
-
-@*<table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    @item.name
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>*@
-
-/**/
+<p>    @Html.ActionLink(@item.name, "Get", "Users", new { id = item.id }, null)</p>
 }

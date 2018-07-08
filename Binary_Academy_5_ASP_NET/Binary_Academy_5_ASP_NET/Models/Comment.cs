@@ -8,21 +8,16 @@ namespace Binary_Academy_5_ASP_NET.Models
 {
     public class Comment
     {
-        public int id;
-        public DateTime createdAt;
-        public string body;
-        public int userId;
-        public int postId;
-        public int likes;
+        public int id { get; set; }
+        public DateTime createdAt { get; set; }
+        public string body { get; set; }
+        public int userId { get; set; }
+        public int postId { get; set; }
+        public int likes { get; set; }
 
         public Comment()
         {
             body = "";
-        }
-
-        public override string ToString()
-        {
-            return $"Id: {id.ToString()}    Body: {body.ToString()}  Body.Lenght: {body.Length}     Likes: {likes}";
         }
     }
 }
