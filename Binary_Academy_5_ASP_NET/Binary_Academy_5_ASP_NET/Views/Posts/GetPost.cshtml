@@ -1,0 +1,38 @@
+﻿@model Binary_Academy_5_ASP_NET.Models.Post;
+@{
+    ViewData["Title"] = "Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="post_area">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="post_title">@Model.title</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="post_data">@Model.body</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <p class="post_data">@Model.createdAt</p>
+        </div>
+        <div class="col-md-2">
+            <p class="likes_post post_data">Likes: @Model.likes</p>
+        </div>
+    </div>
+    @foreach (var comment in Model.comments)
+    {
+        <div class="row">
+            <div class="col-md-8">
+                <p class="comment_data">@comment.body</p>
+            </div>
+            <div class="col-md-4">
+                <p class="comment_data">Likes: @comment.likes</p>
+            </div>
+        </div>
+    }
+</div>

@@ -15,12 +15,12 @@
                     <p class="avatar_p"><span><img class="avatar" src=@post.user.avatar alt="Card image cap"></span></p>
                 </div>
                 <div class="col-md-11">
-                    <p class="user_name_post">@Html.ActionLink(@post.user.name, "Get", "Posts", new { id = @post.user.id }, null)</p>
+                    <p class="user_name_post">@Html.ActionLink(@post.user.name, "GetUser", "Users", new { id = @post.user.id }, null)</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="post_title">@post.title</h2>
+                    <h2 class="post_title">@Html.ActionLink(@post.title, "GetPost", "Posts", new { id = @post.user.id }, null)</h2>
                 </div>
             </div>
             <div class="row">

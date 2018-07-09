@@ -64,3 +64,16 @@
 .post_data {
     padding: 0 20px;
 }
+
+.comment_data {
+    font-style: italic;
+    padding: 0 35px;
+}
+
+.user_name_date {
+    padding: 30px 0;
+}
+
+.todo_area {
+    padding: 20px 0;
+}

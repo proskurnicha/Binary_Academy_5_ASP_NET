@@ -29,11 +29,11 @@
 {
     <br />
     <p><b>User</b></p>
-    @await Html.PartialAsync("../Posts/ListUsers", users)
+    @await Html.PartialAsync("ListUsers", users)
 
     <br />
     <p><b>Last Post</b></p>
-    @await Html.PartialAsync("../Posts/ListPosts", Model.LastPost)
+    @await Html.PartialAsync("ListPosts", Model.LastPost)
 
     <br />
     <p><b>Count comments last post</b></p>
@@ -45,9 +45,9 @@
 
     <br />
     <p><b>Most popular post that have maximum count comments with lenght more thany 80</b></p>
-    @await Html.PartialAsync("../Posts/ListPosts", Model.MostPopularPostByLenght)
+    @await Html.PartialAsync("ListPosts", Model.MostPopularPostByLenght)
 
     <br />
     <p><b>Most popular post that have maximum count likes</b></p>
-    @await Html.PartialAsync("../Posts/ListPosts", Model.MostPopularPostByLikes)
+    @await Html.PartialAsync("ListPosts", Model.MostPopularPostByLikes)
 }

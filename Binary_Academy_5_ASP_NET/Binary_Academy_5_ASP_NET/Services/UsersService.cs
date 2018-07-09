@@ -49,8 +49,15 @@ namespace Binary_Academy_5_ASP_NET
 
         public List<User> GetOrderedListOfUsers()
         {
-            return users.OrderBy(user => user.name).Select(user => new User() { id = user.id, name = user.name, avatar = user.avatar, createdAt = user.createdAt,
-                posts = user.posts, todos = user.todos.OrderByDescending(todo => todo.name.Length).ToList() }).ToList();
+            return users.OrderBy(user => user.name).Select(user => new User()
+            {
+                id = user.id,
+                name = user.name,
+                avatar = user.avatar,
+                createdAt = user.createdAt,
+                posts = user.posts,
+                todos = user.todos.OrderByDescending(todo => todo.name.Length).ToList()
+            }).ToList();
         }
 
         public InfoAboutUserById GetInfoAboutUserById(int id)
@@ -113,6 +120,15 @@ namespace Binary_Academy_5_ASP_NET
                    title = post.title
                }).ToList();
 
+        }
+        public Post GetPostById(int id)
+        {
+            return users.SelectMany(user => user.posts).Where(post => post.id == id).First();
+        }
+
+        public Todo GetTodoById(int id)
+        {
+            return users.SelectMany(user => user.todos).Where(todo => todo.id == id).First();
         }
     }
 }

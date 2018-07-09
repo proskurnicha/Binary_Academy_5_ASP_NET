@@ -1,0 +1,20 @@
+﻿@model Binary_Academy_5_ASP_NET.Models.Todo;
+@{
+    ViewData["Title"] = "GetTodo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="post_area">
+    <div class="row todo_area">
+        <div class="col-md-12">
+            <p class="post_data">@Model.name</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <p class="post_data">@Model.createdAt</p>
+        </div>
+        <div class="col-md-4">
+            <p class="likes_post post_data">Is complete: @Model.isComplete</p>
+        </div>
+    </div>
+</div>

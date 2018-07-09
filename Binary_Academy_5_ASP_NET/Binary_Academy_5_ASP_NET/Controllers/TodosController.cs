@@ -8,27 +8,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Binary_Academy_5_ASP_NET.Controllers
 {
-    public class PostsController : Controller
+    [Produces("application/json")]
+    [Route("api/Todos")]
+    public class TodosController : Controller
     {
         private UsersService service;
 
-        public PostsController()
+        public TodosController()
         {
             service = new UsersService();
         }
-
-        // GET: Posts
-        [HttpGet]
-        public IActionResult Index()
+        // GET: api/Todos/id
+        [HttpGet("GetTodo")]
+        public IActionResult GetTodo(int id)
         {
-            return View(service.GetPosts());
-        }
-
-
-        [HttpGet("{id}", Name = "GetPost")]
-        public IActionResult GetPost(int id)
-        {
-            return View(service.GetPostById(id));
+            return View(service.GetTodoById(id));
         }
     }
 }

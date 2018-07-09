@@ -28,13 +28,13 @@
 {
     <br/>
     <p><b>Post:</b></p>
-    @await Html.PartialAsync("../Posts/ListPosts", posts)
+    @await Html.PartialAsync("ListPosts", posts)
     <br />
     <p><b>Comment with max lenght:</b></p>
-    @await Html.PartialAsync("../Posts/ListComments", Model.CommentWithMaxLenght)
+    @await Html.PartialAsync("ListComments", Model.CommentWithMaxLenght)
     <br />
     <p><b>Comment with max count likes:</b></p>
-    @await Html.PartialAsync("../Posts/ListComments", Model.CommentWithMaxCountLikes)
+    @await Html.PartialAsync("ListComments", Model.CommentWithMaxCountLikes)
     <br />
     <p><b>Count comments where count likes = 0 or body.Lenght < 80: @Model.CountComments</b></p>
 

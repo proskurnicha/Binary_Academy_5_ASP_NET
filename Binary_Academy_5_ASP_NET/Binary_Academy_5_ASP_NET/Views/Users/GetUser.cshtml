@@ -6,7 +6,7 @@
 }
 
 <div>
-    <div class="row">
+    <div class="row user_name_date">
         <div class="col-md-4">
             <p><img class="avatar_main" src=@Model.avatar alt="Card image cap"></p>
         </div>
@@ -20,7 +20,11 @@
     <div class="row">
         <div class="col-md-6">
             <p><b>TODOS</b></p>
-            @await Html.PartialAsync("ListTodos", Model.todos)
+
+            @foreach (var todo in Model.todos)
+            {
+                <p>@Html.ActionLink(@todo.name, "GetTodo", "Todos", new { id = @todo.id })</p>
+            }
         </div>
         <div class="col-md-6">
             <p><b>POSTS</b></p>
@@ -32,28 +36,9 @@
             {
                 @foreach (var post in @Model.posts)
                 {
-                    <p>@post.title</p>
-                    <p>@post.body</p>
-                    <p>@post.createdAt</p>
-                    <p>@post.likes</p>
-                    @if (post.comments.Count == 0)
-                    {
-                        <p>No comments</p>
-                    }
-                    else
-                    {
-                        @foreach (var comment in @post.comments)
-                        {
-                            <p>CommentBody     @comment.body</p>
-                            <p>CommentCreatedAt     @comment.createdAt</p>
-                            <p>CommentLikes     @comment.likes</p>
-                        }
-                    }
-
-                    <br />
+                    @await Html.PartialAsync("../ManipulateData/ListPosts", @Model.posts)
                 }
             }
         </div>
     </div>
-    <a asp-action="Index">Back to List</a>
 </div>

@@ -54,7 +54,7 @@ namespace Binary_Academy_5_ASP_NET
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{api}/{controller=Posts}/{action=Index}");
+                    template: "{controller=Posts}/{action=Index}/{id?}");
             });
         }
     }
